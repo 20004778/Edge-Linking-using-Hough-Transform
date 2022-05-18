@@ -23,17 +23,17 @@ Using the HoughLinesP(),detect line co-ordinates for every points in the images.
 
 
 ## Program:
+
+### Read image and convert it to grayscale image
 ```Python
-# Read image and convert it to grayscale image
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from cv2 import cvtColor
 image=cv2.imread("ir.jpg")
 cv2.imshow("ORIGINAL",image)
-```
 #gray=cv2.cvtColor(image,cv2.COLOR_RGB2GRAY)
-```python
+
 plt.figure(1)
 plt.subplot(1,2,1)
 plt.imshow(image)
@@ -46,25 +46,25 @@ plt.title('gray')
 plt.axis('off')
 
 ```
-# Find the edges in the image using canny detector and display
+### Find the edges in the image using canny detector and display
 ```python
 edges = cv2.Canny(image, 120, 150)
 plt.imshow(edges)
 plt.title('EDGES')
 plt.axis('off')
 ```
-# Detect points that form a line using HoughLinesP
+### Detect points that form a line using HoughLinesP
 ```python
 lines=cv2.HoughLinesP(edges,1,np.pi/180,threshold=80,minLineLength=50,maxLineGap=250)
 
 ```
-# Draw lines on the image
+### Draw lines on the image
 ```python
 for line in lines:
     x1,y1,x2,y2=line[0]
     cv2.line(image,(x1,y1),(x2,y2),(0,0,205),2)
 ```
-# Display the result
+### Display the result
 ```python
 plt.imshow(image)
 plt.title('HOUGH')
